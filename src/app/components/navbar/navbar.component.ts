@@ -17,7 +17,10 @@ import { BtnComponent } from '../btn/btn.component';
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
-  mail = 'name@flowbite.com';
+  userInfo = {
+    name: 'Jhon Doe',
+    mail: 'jhhon@doe.com',
+  };
   isOpen = false;
 
   faBell = faBell;
