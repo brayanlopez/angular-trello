@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faBell, faCircle } from '@fortawesome/free-regular-svg-icons';
+import {
+  faBell,
+  faInfoCircle,
+  faClose,
+} from '@fortawesome/free-solid-svg-icons';
 
 import { BtnComponent } from '../btn/btn.component';
 
@@ -15,6 +19,8 @@ import { BtnComponent } from '../btn/btn.component';
 export class NavbarComponent {
   mail = 'name@flowbite.com';
   isOpen = false;
+
   faBell = faBell;
-  faInfoCircle = faCircle;
+  faInfoCircle = faInfoCircle;
+  faClose = faClose;
 }
