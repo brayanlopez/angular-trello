@@ -3,3 +3,8 @@ export interface ToDo {
   title: string;
   status?: string;
 }
+
+export interface Column {
+  title: string;
+  todos: ToDo[];
+}

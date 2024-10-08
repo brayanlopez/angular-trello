@@ -9,7 +9,7 @@ import {
 } from '@angular/cdk/drag-drop';
 
 import { NavbarComponent } from '../../components/navbar/navbar.component';
-import { ToDo } from '../../models/todo.model';
+import { Column, ToDo } from '../../models/todo.model';
 
 @Component({
   selector: 'app-board',
@@ -19,37 +19,55 @@ import { ToDo } from '../../models/todo.model';
   styleUrl: './board.component.scss',
 })
 export class BoardComponent {
-  todos: ToDo[] = [
+  columns: Column[] = [
     {
-      id: Date.now().toString(),
-      title: 'Make dishes',
+      title: 'ToDo',
+      todos: [
+        {
+          id: '1',
+          title: 'Make dishes',
+        },
+        {
+          id: '2',
+          title: 'Buy a unicorn',
+        },
+      ],
     },
     {
-      id: Date.now().toString(),
-      title: 'Buy a unicorn',
+      title: 'Doing',
+      todos: [
+        {
+          id: '3',
+          title: 'Watch Angular Path in Platzi',
+        },
+      ],
     },
     {
-      id: Date.now().toString(),
-      title: 'Watch Angular Path in Platzi',
+      title: 'Done',
+      todos: [
+        {
+          id: '4',
+          title: 'Play video games',
+        },
+      ],
     },
   ];
 
-  doing: ToDo[] = [
-    {
-      id: Date.now().toString(),
-      title: 'Watch Angular Path in Platzi',
-    },
-  ];
-  done: ToDo[] = [
-    {
-      id: Date.now().toString(),
-      title: 'Watch Angular Path in Platzi',
-    },
-  ];
+  todos: ToDo[] = [];
+  doing: ToDo[] = [];
+  done: ToDo[] = [];
 
-  drop(event: CdkDragDrop<any[]>) {
+  constructor() {}
+
+  ngOnInit(): void {}
+
+  drop(event: CdkDragDrop<ToDo[]>) {
     if (event.previousContainer === event.container) {
-      moveItemInArray(this.todos, event.previousIndex, event.currentIndex);
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
     } else {
       transferArrayItem(
         event.previousContainer.data,
@@ -58,5 +76,12 @@ export class BoardComponent {
         event.currentIndex
       );
     }
+  }
+
+  addColumn() {
+    this.columns.push({
+      title: 'New Column',
+      todos: [],
+    });
   }
 }
