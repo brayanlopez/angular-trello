@@ -1,32 +1,62 @@
 import { Component } from '@angular/core';
+import {
+  CdkDrag,
+  CdkDragDrop,
+  CdkDropList,
+  CdkDropListGroup,
+  moveItemInArray,
+  transferArrayItem,
+} from '@angular/cdk/drag-drop';
+
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { ToDo } from '../../models/todo.model';
 
 @Component({
   selector: 'app-board',
   standalone: true,
-  imports: [NavbarComponent],
+  imports: [NavbarComponent, CdkDropList, CdkDropListGroup, CdkDrag],
   templateUrl: './board.component.html',
   styleUrl: './board.component.scss',
 })
 export class BoardComponent {
   todos: ToDo[] = [
     {
-      id: '1',
+      id: Date.now().toString(),
       title: 'Make dishes',
     },
     {
-      id: '2',
+      id: Date.now().toString(),
       title: 'Buy a unicorn',
     },
     {
-      id: '2',
+      id: Date.now().toString(),
       title: 'Watch Angular Path in Platzi',
     },
   ];
-  drop(event: Event) {}
 
-  // drop(event: CdkDragDrop<any[]>) {
-  //   moveItemInArray(this.todos, event.previousIndex, event.currentIndex);
-  // }
+  doing: ToDo[] = [
+    {
+      id: Date.now().toString(),
+      title: 'Watch Angular Path in Platzi',
+    },
+  ];
+  done: ToDo[] = [
+    {
+      id: Date.now().toString(),
+      title: 'Watch Angular Path in Platzi',
+    },
+  ];
+
+  drop(event: CdkDragDrop<any[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(this.todos, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    }
+  }
 }
