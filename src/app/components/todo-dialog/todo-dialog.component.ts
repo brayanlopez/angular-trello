@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { DialogRef } from '@angular/cdk/dialog';
+import { Component, Inject } from '@angular/core';
+import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
@@ -12,6 +12,14 @@ import {
   faClock,
 } from '@fortawesome/free-solid-svg-icons';
 import { BtnComponent } from '../btn/btn.component';
+import { ToDo } from '../../models/todo.model';
+
+interface InputData {
+  todo: ToDo;
+}
+interface OutputData {
+  rta: boolean;
+}
 
 @Component({
   selector: 'app-todo-dialog',
@@ -28,12 +36,18 @@ export class TodoDialogComponent {
   faTag = faTag;
   faCheckSquare = faCheckSquare;
   faClock = faClock;
+  todo: ToDo;
 
-  constructor(private dialogRef: DialogRef) {}
+  constructor(
+    private dialogRef: DialogRef<OutputData>,
+    @Inject(DIALOG_DATA) data: InputData
+  ) {
+    this.todo = data.todo;
+  }
 
   ngOnInit(): void {}
 
   close() {
-    this.dialogRef.close();
+    this.dialogRef.close({ rta: false });
   }
 }
