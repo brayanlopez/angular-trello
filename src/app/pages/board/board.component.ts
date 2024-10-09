@@ -9,7 +9,7 @@ import {
 } from '@angular/cdk/drag-drop';
 import { Dialog, DialogModule } from '@angular/cdk/dialog';
 
-import { NavbarComponent } from '../../components/navbar/navbar.component';
+import { NavbarComponent } from '../../modules/layout/components/navbar/navbar.component';
 import { Column, ToDo } from '../../models/todo.model';
 import { TodoDialogComponent } from '../../components/todo-dialog/todo-dialog.component';
 

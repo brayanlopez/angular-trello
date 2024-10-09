@@ -7,7 +7,7 @@ import {
   faClose,
 } from '@fortawesome/free-solid-svg-icons';
 
-import { BtnComponent } from '../../modules/shared/components/button/btn.component';
+import { BtnComponent } from '../../../shared/components/button/btn.component';
 
 @Component({
   selector: 'app-navbar',
