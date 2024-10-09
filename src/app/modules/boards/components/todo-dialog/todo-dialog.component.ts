@@ -11,8 +11,8 @@ import {
   faCheckSquare,
   faClock,
 } from '@fortawesome/free-solid-svg-icons';
-import { ToDo } from '../../models/todo.model';
-import { BtnComponent } from '../../modules/shared/components/button/btn.component';
+import { ToDo } from '../../../../models/todo.model';
+import { BtnComponent } from '../../../shared/components/button/btn.component';
 
 interface InputData {
   todo: ToDo;
