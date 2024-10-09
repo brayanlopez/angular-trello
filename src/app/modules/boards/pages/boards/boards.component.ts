@@ -15,7 +15,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faTrello } from '@fortawesome/free-brands-svg-icons';
 
-import { NavbarComponent } from '../../modules/layout/components/navbar/navbar.component';
+import { NavbarComponent } from '../../../layout/components/navbar/navbar.component';
 
 @Component({
   selector: 'app-boards',
