@@ -23,6 +23,7 @@
     "paths": {
       "@models/*": ["./src/app/models/*"],
       "@environments/*": ["./src/environments/*"],
+      "@modules/*": ["./src/modules/*"],
       "@guards/*": ["./src/app/guards/*"],
       "@interceptors/*": ["./src/app/interceptors/*"],
       "@services/*": ["./src/app/services/*"],
