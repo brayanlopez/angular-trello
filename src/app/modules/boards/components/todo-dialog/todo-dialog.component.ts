@@ -40,7 +40,7 @@ export class TodoDialogComponent {
 
   constructor(
     private dialogRef: DialogRef<OutputData>,
-    @Inject(DIALOG_DATA) data: InputData
+    @Inject(DIALOG_DATA) data: InputData,
   ) {
     this.todo = data.todo;
   }

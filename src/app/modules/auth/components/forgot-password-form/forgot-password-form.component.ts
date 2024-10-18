@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
+import { BtnComponent } from '../../../shared/components/button/btn.component';
 
 @Component({
+  standalone: true,
   selector: 'app-forgot-password-form',
+  imports: [ReactiveFormsModule, BtnComponent],
   templateUrl: './forgot-password-form.component.html',
 })
 export class ForgotPasswordFormComponent {

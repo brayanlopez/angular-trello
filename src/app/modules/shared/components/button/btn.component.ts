@@ -11,6 +11,7 @@ import { NgClass } from '@angular/common';
 export class BtnComponent {
   @Input() typeBtn: 'button' | 'reset' | 'submit' = 'button';
   @Input() color: string = 'primary';
+  @Input() loading = false;
 
   constructor() {}
 
