@@ -15,4 +15,18 @@ export class AuthService {
       password,
     });
   }
+
+  register(name: string, mail: string, password: string) {
+    return this.http.post(`${environment.API_URL}/api/v1/auth/register`, {
+      name,
+      mail,
+      password,
+    });
+  }
+
+  isAvailable(mail: string) {
+    return this.http.post(`${environment.API_URL}/api/v1/auth/is-available`, {
+      mail,
+    });
+  }
 }
