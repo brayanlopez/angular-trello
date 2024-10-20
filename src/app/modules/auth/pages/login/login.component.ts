@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { BtnComponent } from '../../../shared/components/button/btn.component';
 import { BackgroundComponent } from '../../components/background/background.component';
@@ -19,7 +19,7 @@ import { FooterComponent } from '../../components/footer/footer.component';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}

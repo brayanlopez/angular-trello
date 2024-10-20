@@ -62,10 +62,15 @@
         }
       </div>
     }
+    @if (status === "failed") {
+      <p class="font-medium text-red-500 text-xs mt-1 ml-1">
+        Invalid credentials
+      </p>
+    }
   </div>
   <div>
-    <app-btn typeBtn="submit" color="success" [loading]="status === 'loading'"
-      >Login</app-btn
-    >
+    <app-btn typeBtn="submit" color="success" [loading]="status === 'loading'">
+      Login
+    </app-btn>
   </div>
 </form>
