@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPen, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
@@ -16,7 +16,7 @@ import { RequestStatus } from '@models/request-status.model';
   imports: [FontAwesomeModule, BtnComponent, ReactiveFormsModule],
 })
 export class LoginFormComponent {
-  form: any;
+  form;
   faPen = faPen;
   faEye = faEye;
   faEyeSlash = faEyeSlash;
@@ -27,10 +27,18 @@ export class LoginFormComponent {
     private formBuilder: FormBuilder,
     private router: Router,
     private authService: AuthService,
+    private route: ActivatedRoute,
   ) {
     this.form = this.formBuilder.nonNullable.group({
       email: ['', [Validators.email, Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]],
+    });
+
+    this.route.queryParamMap.subscribe((params) => {
+      const email = params.get('email');
+      if (email) {
+        this.form.controls.email.setValue(email);
+      }
     });
   }
 

@@ -20,6 +20,7 @@ export class RegisterFormComponent {
   formUser;
   status: RequestStatus = 'init';
   statusUser: RequestStatus = 'init';
+  showRegister = false;
   faEye = faEye;
   faEyeSlash = faEyeSlash;
   showPassword = false;
@@ -63,6 +64,29 @@ export class RegisterFormComponent {
       });
     } else {
       this.form.markAllAsTouched();
+    }
+  }
+
+  validateUser() {
+    if (this.formUser.valid) {
+      this.statusUser = 'loading';
+      const { email } = this.formUser.getRawValue();
+      this.authService.isAvailable(email).subscribe({
+        next: (rta) => {
+          this.statusUser = 'success';
+          if (rta.isAvailable) {
+            this.form.controls.email.setValue(email);
+            this.showRegister = true;
+          } else {
+            this.router.navigate(['/login'], { queryParams: { email } });
+          }
+        },
+        error: () => {
+          this.statusUser = 'failed';
+        },
+      });
+    } else {
+      this.formUser.markAllAsTouched();
     }
   }
 }
