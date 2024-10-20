@@ -4,7 +4,10 @@ import { Router } from '@angular/router';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPen, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+
 import { BtnComponent } from '../../../shared/components/button/btn.component';
+import { AuthService } from '@services/auth.service';
+import { RequestStatus } from '@models/request-status.model';
 
 @Component({
   standalone: true,
@@ -18,11 +21,12 @@ export class LoginFormComponent {
   faEye = faEye;
   faEyeSlash = faEyeSlash;
   showPassword = false;
-  status: string = 'init';
+  status: RequestStatus = 'init';
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
+    private authService: AuthService
   ) {
     this.form = this.formBuilder.nonNullable.group({
       email: ['', [Validators.email, Validators.required]],
@@ -34,7 +38,15 @@ export class LoginFormComponent {
     if (this.form.valid) {
       this.status = 'loading';
       const { email, password } = this.form.getRawValue();
-      // TODO
+      this.authService.login(email, password).subscribe({
+        next: () => {
+          this.status = 'success';
+          this.router.navigate(['/app']);
+        },
+        error: () => {
+          this.status = 'failed';
+        },
+      });
     } else {
       this.form.markAllAsTouched();
     }
